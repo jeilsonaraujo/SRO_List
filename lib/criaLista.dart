@@ -1,6 +1,7 @@
+import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'dart:async';
 
 import 'login.dart';
 
@@ -10,13 +11,13 @@ class CriarLista extends StatefulWidget {
 }
 
 final TextEditingController _objeto = TextEditingController();
-final TextEditingController _alertTextFieldController = TextEditingController();
 final FocusNode focusNode = FocusNode();
 
 class _CriarListaState extends State<CriarLista> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
+        backgroundColor: CupertinoColors.white,
         navigationBar: CupertinoNavigationBar(
           backgroundColor: Color.fromRGBO(247, 243, 240, 2),
           leading: Row(
@@ -52,7 +53,7 @@ class _CriarListaState extends State<CriarLista> {
             children: [
               DecoratedBox(
                 decoration: BoxDecoration(
-                  color: CupertinoColors.white,
+                  color: CupertinoColors.systemGrey5,
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: Padding(
@@ -67,34 +68,24 @@ class _CriarListaState extends State<CriarLista> {
                         color: Color(0xff808080),
                       ),
                       Expanded(
-                        child: CupertinoTextField(
-                          maxLength: 13,
-                          controller: _objeto,
-                          focusNode: focusNode,
-                          cursorColor: CupertinoColors.activeBlue,
-                          onChanged: (String value) async {
-                            if (_objeto.text.length == 13) {
-                              print("Abrir janela");
-                              return showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return AlertDialog(
-                                      title: Text('TextField in Dialog'),
-                                      content: TextField(
-                                        onChanged: (value) {},
-                                        controller: _alertTextFieldController,
-                                        decoration: InputDecoration(
-                                            hintText: "Text Field in Dialog"),
-                                      ),
-                                    );
-                                  });
-                            }
-                          },
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: CupertinoTextField(
+                            maxLength: 13,
+                            controller: _objeto,
+                            focusNode: focusNode,
+                            cursorColor: CupertinoColors.activeBlue,
+                            onChanged: (String value) async {
+                              if (_objeto.text.length == 13) {
+                                print("Abrir janela");
+                              }
+                            },
+                          ),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          _objeto.clear();
+                          scan();
                         },
                         child: Icon(
                           CupertinoIcons.search,
@@ -109,4 +100,9 @@ class _CriarListaState extends State<CriarLista> {
           ),
         ));
   }
+}
+
+Future scan() async {
+  String barcode = await BarcodeScanner.scan();
+  _objeto.text = barcode;
 }

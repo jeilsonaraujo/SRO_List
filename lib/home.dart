@@ -14,7 +14,9 @@ class _CadastrarState extends State<Cadastrar> {
   Widget build(BuildContext context) {
     return CupertinoApp(
       home: CupertinoTabScaffold(
+        backgroundColor: CupertinoColors.white,
         tabBar: CupertinoTabBar(
+          backgroundColor: CupertinoColors.white,
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.add)),
             BottomNavigationBarItem(icon: Icon(Icons.view_list))
