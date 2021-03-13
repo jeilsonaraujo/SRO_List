@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sro_list/home.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -66,7 +67,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                       autofocus: true,
                       maxLength: 8,
                       controller: _matTextField,
-                      style: TextStyle(color: Colors.blueGrey),
+                      style: TextStyle(color: Colors.black),
                       keyboardType: TextInputType.number,
                       onChanged: (String value) async {
                         if (_matTextField.text.length == 8) {
@@ -88,6 +89,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
                       placeholderStyle: TextStyle(color: Colors.grey),
                       controller: _senhaTextField,
                       keyboardType: TextInputType.number,
+                      obscureText: true,
+                      maxLength: 8,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(6),
@@ -103,11 +106,12 @@ class _MyCustomFormState extends State<MyCustomForm> {
                             fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                       onPressed: () {
-                        LogIn();
                         if (_matTextField.text.toString() == "80886787" &&
                             _senhaTextField.text.toString() == "80886787") {
                           print("login aceito");
-                          Navigator.pushNamed(context, '/cadastro');
+                          Navigator.of(context).pushReplacement(
+                              CupertinoPageRoute(
+                                  builder: (context) => Cadastrar()));
                         }
                       },
                     ),
@@ -120,9 +124,4 @@ class _MyCustomFormState extends State<MyCustomForm> {
       ),
     );
   }
-}
-
-// ignore: non_constant_identifier_names
-LogIn() {
-  print('ok');
 }
