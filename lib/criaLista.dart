@@ -2,6 +2,7 @@ import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sro_list/data.dart';
+import 'package:sro_list/viewList.dart';
 import 'dart:async';
 
 import 'database_helper.dart';
@@ -25,7 +26,6 @@ final dbHelper = DatabaseHelper.instance;
 class _CriarListaState extends State<CriarLista> {
   @override
   Widget build(BuildContext context) {
-    var tipo = "text";
     return CupertinoPageScaffold(
         backgroundColor: CupertinoColors.white,
         navigationBar: CupertinoNavigationBar(
@@ -75,6 +75,9 @@ class _CriarListaState extends State<CriarLista> {
                     children: [
                       Row(
                         children: [
+                          Container(
+                            width: 15,
+                          ),
                           Icon(
                             CupertinoIcons.cube_box,
                             color: Color(0xff808080),
@@ -125,10 +128,16 @@ class _CriarListaState extends State<CriarLista> {
                               CupertinoIcons.search,
                             ),
                           ),
+                          Container(
+                            width: 15,
+                          ),
                         ],
                       ),
                       Row(
                         children: [
+                          Container(
+                            width: 15,
+                          ),
                           Icon(
                             CupertinoIcons.map,
                             color: Color(0xff808080),
@@ -149,13 +158,13 @@ class _CriarListaState extends State<CriarLista> {
                               ),
                             ),
                           ),
-                          Container(
-                            width: 25,
-                          )
                         ],
                       ),
                       Row(
                         children: [
+                          Container(
+                            width: 15,
+                          ),
                           Icon(
                             CupertinoIcons.number,
                             color: Color(0xff808080),
@@ -175,7 +184,7 @@ class _CriarListaState extends State<CriarLista> {
                             ),
                           ),
                           Container(
-                            width: 25,
+                            width: 105,
                           )
                         ],
                       ),
@@ -186,9 +195,8 @@ class _CriarListaState extends State<CriarLista> {
                           CupertinoButton(
                               child: Text("Ver Lista"),
                               onPressed: () {
-                                Navigator.of(context).pushReplacement(
-                                    CupertinoPageRoute(
-                                        builder: (context) => MyApp()));
+                                Navigator.of(context).push(CupertinoPageRoute(
+                                    builder: (context) => ViewLista()));
                               }),
                           CupertinoButton(
                               child: Text("Limpar"),
