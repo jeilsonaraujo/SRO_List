@@ -11,7 +11,11 @@ class CriarLista extends StatefulWidget {
 }
 
 final TextEditingController _objeto = TextEditingController();
-final FocusNode focusNode = FocusNode();
+final TextEditingController _logradouro = TextEditingController();
+final TextEditingController _numero = TextEditingController();
+final FocusNode focusObjetoNode = FocusNode();
+final FocusNode focusLogradouroNode = FocusNode();
+final FocusNode focusNumeroNode = FocusNode();
 
 class _CriarListaState extends State<CriarLista> {
   @override
@@ -40,8 +44,8 @@ class _CriarListaState extends State<CriarLista> {
                   ),
                 ),
               ]),
-          middle: Image.network(
-            'https://www.correios.com.br/++theme++correios.site.tema/images/logo_correios.png',
+          middle: Image.asset(
+            'assets/logo_correios.png',
             width: 120,
           ),
         ),
@@ -61,41 +65,111 @@ class _CriarListaState extends State<CriarLista> {
                     horizontal: 4.0,
                     vertical: 8.0,
                   ),
-                  child: Row(
+                  child: Column(
                     children: [
-                      Icon(
-                        CupertinoIcons.cube_box,
-                        color: Color(0xff808080),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: CupertinoTextField(
-                            maxLength: 13,
-                            controller: _objeto,
-                            focusNode: focusNode,
-                            cursorColor: CupertinoColors.activeBlue,
-                            onChanged: (String value) async {
-                              if (_objeto.text.length == 13) {
-                                print("Abrir janela");
-                              }
-                            },
+                      Row(
+                        children: [
+                          Icon(
+                            CupertinoIcons.cube_box,
+                            color: Color(0xff808080),
                           ),
-                        ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: CupertinoTextField(
+                                maxLength: 13,
+                                controller: _objeto,
+                                autofocus: true,
+                                focusNode: focusObjetoNode,
+                                placeholder: "Objeto",
+                                cursorColor: CupertinoColors.activeBlue,
+                                onChanged: (String value) async {
+                                  if (_objeto.text.length == 13) {
+                                    focusLogradouroNode.requestFocus();
+                                  }
+                                },
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              scan();
+                            },
+                            child: Icon(
+                              CupertinoIcons.search,
+                            ),
+                          ),
+                        ],
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          scan();
-                        },
-                        child: Icon(
-                          CupertinoIcons.search,
-                          color: Color(0xff000000),
-                        ),
+                      Row(
+                        children: [
+                          Icon(
+                            CupertinoIcons.map,
+                            color: Color(0xff808080),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: CupertinoTextField(
+                                controller: _logradouro,
+                                focusNode: focusLogradouroNode,
+                                placeholder: "Logradouro",
+                                cursorColor: CupertinoColors.activeBlue,
+                                onSubmitted: (String value) async {
+                                  focusNumeroNode.requestFocus();
+                                },
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 25,
+                          )
+                        ],
                       ),
+                      Row(
+                        children: [
+                          Icon(
+                            CupertinoIcons.number,
+                            color: Color(0xff808080),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: CupertinoTextField(
+                                maxLength: 6,
+                                controller: _numero,
+                                focusNode: focusNumeroNode,
+                                placeholder: "Número",
+                                keyboardType: TextInputType.number,
+                                cursorColor: CupertinoColors.activeBlue,
+                                onChanged: (String value) async {},
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 25,
+                          )
+                        ],
+                      ),
+                      Center(
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          CupertinoButton(
+                              child: Text("Limpar"),
+                              onPressed: () {
+                                _objeto.clear();
+                                _logradouro.clear();
+                                _numero.clear();
+                                focusObjetoNode.requestFocus();
+                              }),
+                          CupertinoButton(child: Text("Add"), onPressed: () {})
+                        ],
+                      ))
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ));
@@ -105,4 +179,5 @@ class _CriarListaState extends State<CriarLista> {
 Future scan() async {
   String barcode = await BarcodeScanner.scan();
   _objeto.text = barcode;
+  focusLogradouroNode.requestFocus();
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sro_list/home.dart';
+import 'package:sro_list/criaLista.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -50,8 +50,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.network(
-                'https://apps.shopifycdn.com/listing_images/3c310093e62eb029122fcdf3b9792814/icon/d4f660ffbeac192c660fb390504d83c1.png',
+              Image.asset(
+                'assets/icon.png',
                 width: 130,
               ),
               Container(
@@ -111,7 +111,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                           print("login aceito");
                           Navigator.of(context).pushReplacement(
                               CupertinoPageRoute(
-                                  builder: (context) => Cadastrar()));
+                                  builder: (context) => CriarLista()));
                         }
                       },
                     ),
