@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sro_list/criaLista.dart';
+import 'package:sro_list/sro/criaLista.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -92,9 +92,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
                       obscureText: true,
                       maxLength: 8,
                       decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(6),
-                      ),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(6)),
                     ),
                     Container(
                       height: 10,

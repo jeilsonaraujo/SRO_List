@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:barcode/barcode.dart';
 import 'package:flutter/cupertino.dart';
 // ignore_for_file: always_specify_types
 

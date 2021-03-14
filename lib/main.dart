@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:sro_list/criaLista.dart';
-import 'package:sro_list/login.dart';
+import 'package:sro_list/sro/criaLista.dart';
+import 'package:sro_list/sro/login.dart';
 
 void main(List<String> args) {
   runApp(CupertinoApp(

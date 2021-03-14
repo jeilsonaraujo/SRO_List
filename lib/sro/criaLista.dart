@@ -1,11 +1,10 @@
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sro_list/data.dart';
-import 'package:sro_list/viewList.dart';
+
+import 'package:sro_list/sro/viewList.dart';
 import 'dart:async';
 
-import 'database_helper.dart';
 import 'login.dart';
 
 class CriarLista extends StatefulWidget {
@@ -20,8 +19,6 @@ final FocusNode focusObjetoNode = FocusNode();
 final FocusNode focusLogradouroNode = FocusNode();
 final FocusNode focusNumeroNode = FocusNode();
 bool _numeric = false;
-
-final dbHelper = DatabaseHelper.instance;
 
 class _CriarListaState extends State<CriarLista> {
   @override
@@ -207,10 +204,7 @@ class _CriarListaState extends State<CriarLista> {
                                 focusObjetoNode.requestFocus();
                               }),
                           CupertinoButton(
-                              child: Text("Adicionar"),
-                              onPressed: () {
-                                _insert();
-                              })
+                              child: Text("Adicionar"), onPressed: () {})
                         ],
                       ))
                     ],
@@ -227,20 +221,4 @@ Future scan() async {
   String barcode = await BarcodeScanner.scan();
   _objeto.text = barcode;
   focusLogradouroNode.requestFocus();
-}
-
-// ignore: unused_element
-void _insert() async {
-  // row to insert
-  Map<String, dynamic> row = {
-    DatabaseHelper.columnObjeto: _objeto.text,
-    DatabaseHelper.columnLogradouro: _logradouro.text,
-    DatabaseHelper.columnNumero: _numero.text
-  };
-  final id = await dbHelper.insert(row);
-  print('inserted row id: $id');
-  _objeto.clear();
-  _logradouro.clear();
-  _numero.clear();
-  focusObjetoNode.requestFocus();
 }
