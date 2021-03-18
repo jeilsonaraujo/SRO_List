@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class ViewLista extends StatefulWidget {
   @override
@@ -17,29 +17,10 @@ final FocusNode focusNumeroNode = FocusNode();
 class _ViewListaState extends State<ViewLista> {
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
-      home: CupertinoPageScaffold(
-          backgroundColor: CupertinoColors.white,
-          navigationBar: CupertinoNavigationBar(
-            backgroundColor: Color.fromRGBO(247, 243, 240, 2),
-            leading: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(left: 10.0, right: 15.0),
-                    child: Container(
-                      height: 8.0,
-                      width: 8.0,
-                    ),
-                  ),
-                ]),
-            middle: Image.asset(
-              'assets/logo_correios.png',
-              width: 120,
-            ),
-          ),
-          child: SingleChildScrollView(
+    return MaterialApp(
+      home: Scaffold(
+          backgroundColor: Colors.white,
+          body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: SafeArea(
@@ -52,7 +33,7 @@ class _ViewListaState extends State<ViewLista> {
                       padding: const EdgeInsets.only(bottom: 15),
                       child: DecoratedBox(
                         decoration: BoxDecoration(
-                          color: CupertinoColors.systemGrey5,
+                          color: Colors.grey[300],
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: Padding(
@@ -70,10 +51,7 @@ class _ViewListaState extends State<ViewLista> {
                                   Container(
                                     width: 15,
                                   ),
-                                  Icon(
-                                    CupertinoIcons.cube_box,
-                                    color: Color(0xff808080),
-                                  ),
+                                  Icon(Icons.add_box_outlined),
                                   Expanded(
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -92,7 +70,7 @@ class _ViewListaState extends State<ViewLista> {
                                     width: 15,
                                   ),
                                   Icon(
-                                    CupertinoIcons.map,
+                                    Icons.map,
                                     color: Color(0xff808080),
                                   ),
                                   Expanded(

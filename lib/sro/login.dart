@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:sro_list/sro/lista/criaLista.dart';
@@ -42,10 +41,10 @@ class _MyCustomFormState extends State<MyCustomForm> {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
-      home: CupertinoPageScaffold(
+    return MaterialApp(
+      home: Scaffold(
         backgroundColor: Color.fromRGBO(26, 116, 197, 15),
-        child: Padding(
+        body: Padding(
           padding: const EdgeInsets.all(58.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -62,9 +61,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CupertinoTextField(
-                      placeholder: 'Matricula',
-                      placeholderStyle: TextStyle(color: Colors.grey),
+                    TextField(
                       autofocus: true,
                       maxLength: 8,
                       controller: _matTextField,
@@ -75,31 +72,19 @@ class _MyCustomFormState extends State<MyCustomForm> {
                           myFocusNode.requestFocus();
                         }
                       },
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(6),
-                      ),
                     ),
                     Container(
                       height: 20,
                     ),
-                    CupertinoTextField(
-                      placeholder: 'Senha',
+                    TextField(
                       focusNode: myFocusNode,
                       style: TextStyle(color: Colors.black),
-                      placeholderStyle: TextStyle(color: Colors.grey),
                       controller: _senhaTextField,
                       keyboardType: TextInputType.number,
                       obscureText: true,
                       maxLength: 8,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(6)),
                     ),
-                    Container(
-                      height: 10,
-                    ),
-                    CupertinoButton(
+                    MaterialButton(
                       child: Text(
                         "Entrar",
                         style: TextStyle(
@@ -110,7 +95,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                             _senhaTextField.text.toString() == "80886787") {
                           print("login aceito");
                           Navigator.of(context).pushReplacement(
-                              CupertinoPageRoute(
+                              MaterialPageRoute(
                                   builder: (context) => CriarLista()));
                         }
                       },
