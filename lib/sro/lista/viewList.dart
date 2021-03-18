@@ -2,8 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 
-import '../login.dart';
-
 class ViewLista extends StatefulWidget {
   @override
   _ViewListaState createState() => _ViewListaState();

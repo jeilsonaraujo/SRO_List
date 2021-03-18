@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:sro_list/sro/lista/criaLista.dart';
 import 'package:sro_list/sro/login.dart';
 
 void main(List<String> args) {
-  runApp(CupertinoApp(
+  runApp(MaterialApp(
     initialRoute: '/',
     routes: {'/': (context) => Login(), '/cadastro': (context) => CriarLista()},
   ));
