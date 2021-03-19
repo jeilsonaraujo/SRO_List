@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:sro_list/sro/lista/viewList.dart';
 import 'dart:async';
 
-import '../login.dart';
+import 'package:flutter/cupertino.dart';
 
 class CriarLista extends StatefulWidget {
   @override
@@ -48,7 +48,7 @@ class _CriarListaState extends State<CriarLista> {
                           Container(
                             width: 15,
                           ),
-                          Icon(Icons.add_box_outlined),
+                          Icon(CupertinoIcons.cube_box),
                           Expanded(
                             child: Padding(
                               padding: const EdgeInsets.all(15.0),

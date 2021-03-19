@@ -55,13 +55,23 @@ class _MyCustomFormState extends State<MyCustomForm> {
                 width: 130,
               ),
               Container(
-                height: 20,
+                height: 10,
               ),
               Container(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextField(
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        hoverColor: Colors.white,
+                        disabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
                       autofocus: true,
                       maxLength: 8,
                       controller: _matTextField,
@@ -74,7 +84,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                       },
                     ),
                     Container(
-                      height: 20,
+                      height: 10,
                     ),
                     TextField(
                       focusNode: myFocusNode,
