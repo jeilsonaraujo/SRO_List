@@ -3,20 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sro_list/db/employee.dart';
 import 'package:sro_list/db/BDHelper.dart';
-import 'package:sro_list/sro/lista/barcodeList.dart';
+import 'package:barcode_image/barcode_image.dart';
+import 'package:image/image.dart';
+import 'package:barcode_widget/barcode_widget.dart';
 
-class VerLista extends StatefulWidget {
+class BarcodeLista extends StatefulWidget {
   final String title;
 
-  VerLista({Key key, this.title}) : super(key: key);
+  BarcodeLista({Key key, this.title}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _VerListaState();
+    return _BarcodeListaState();
   }
 }
 
-class _VerListaState extends State<VerLista> {
+class _BarcodeListaState extends State<BarcodeLista> {
   //
   Future<List<Employee>> employees;
   TextEditingController controllerObj = TextEditingController();
@@ -77,7 +79,7 @@ class _VerListaState extends State<VerLista> {
       scrollDirection: Axis.vertical,
       child: DataTable(
         headingRowHeight: 0,
-        dataRowHeight: 89,
+        dataRowHeight: 340,
         columns: [
           DataColumn(
             label: Text('Objeto'),
@@ -87,67 +89,34 @@ class _VerListaState extends State<VerLista> {
             .map(
               (employee) => DataRow(cells: [
                 DataCell(Column(children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 0.0,
-                          vertical: 0.0,
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 15),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: Column(
                           children: [
-                            Container(
-                              height: 5,
+                            BarcodeWidget(
+                              barcode: Barcode.code128(),
+                              data: employee.name,
+                              width: 300,
+                              height: 100,
                             ),
-                            Row(
-                              children: [
-                                Container(
-                                  width: 15,
-                                ),
-                                Icon(Icons.add_box_outlined),
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 15, vertical: 10),
-                                    child: Text(employee.name,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        )),
-                                  ),
-                                ),
-                              ],
+                            BarcodeWidget(
+                              barcode: Barcode.code128(),
+                              data: employee.nameLog,
+                              width: 300,
+                              height: 100,
                             ),
-                            Row(
-                              children: [
-                                Container(
-                                  width: 15,
-                                ),
-                                Icon(
-                                  Icons.map,
-                                  color: Color(0xff808080),
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 15),
-                                      child: Text(
-                                        employee.nameLog +
-                                            ", " +
-                                            employee.nameNum,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      )),
-                                ),
-                              ],
+                            BarcodeWidget(
+                              barcode: Barcode.code128(),
+                              data: employee.nameNum,
+                              width: 300,
+                              height: 100,
                             ),
-                            Container(
-                              height: 10,
-                            )
                           ],
                         ),
                       ),
@@ -202,13 +171,10 @@ class _VerListaState extends State<VerLista> {
                 onPressed: () => {Navigator.of(context).pop()},
                 icon: Icon(Icons.arrow_back, color: Colors.white),
               ),
-              Text('Ver Lista'),
+              Text('Lista de Códigos'),
               IconButton(
-                onPressed: () => {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => BarcodeLista()))
-                },
-                icon: Icon(Icons.list_alt, color: Colors.white),
+                onPressed: () => null,
+                icon: Icon(Icons.list_alt, color: Colors.transparent),
               ),
               // Your widgets here
             ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:sro_list/sro/lista/criaLista.dart';
+import 'package:sro_list/sro/lista/home.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -46,74 +46,81 @@ class _MyCustomFormState extends State<MyCustomForm> {
         backgroundColor: Color.fromRGBO(26, 116, 197, 15),
         body: Padding(
           padding: const EdgeInsets.all(58.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/icon.png',
-                width: 130,
-              ),
-              Container(
-                height: 10,
-              ),
-              Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextField(
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        hoverColor: Colors.white,
-                        disabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.grey,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/icon.png',
+                  width: 130,
+                ),
+                Container(
+                  height: 10,
+                ),
+                Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextField(
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hoverColor: Colors.white,
+                          disabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                            ),
                           ),
                         ),
+                        autofocus: true,
+                        maxLength: 8,
+                        controller: _matTextField,
+                        style: TextStyle(color: Colors.black),
+                        keyboardType: TextInputType.number,
+                        onChanged: (String value) async {
+                          if (_matTextField.text.length == 8) {
+                            myFocusNode.requestFocus();
+                          }
+                        },
                       ),
-                      autofocus: true,
-                      maxLength: 8,
-                      controller: _matTextField,
-                      style: TextStyle(color: Colors.black),
-                      keyboardType: TextInputType.number,
-                      onChanged: (String value) async {
-                        if (_matTextField.text.length == 8) {
-                          myFocusNode.requestFocus();
-                        }
-                      },
-                    ),
-                    Container(
-                      height: 10,
-                    ),
-                    TextField(
-                      focusNode: myFocusNode,
-                      style: TextStyle(color: Colors.black),
-                      controller: _senhaTextField,
-                      keyboardType: TextInputType.number,
-                      obscureText: true,
-                      maxLength: 8,
-                    ),
-                    MaterialButton(
-                      child: Text(
-                        "Entrar",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.white),
+                      Container(
+                        height: 10,
                       ),
-                      onPressed: () {
-                        if (_matTextField.text.toString() == "80886787" &&
-                            _senhaTextField.text.toString() == "80886787") {
-                          print("login aceito");
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => CriarLista()));
-                        }
-                      },
-                    ),
-                  ],
+                      TextField(
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          hoverColor: Colors.white,
+                        ),
+                        focusNode: myFocusNode,
+                        style: TextStyle(color: Colors.black),
+                        controller: _senhaTextField,
+                        keyboardType: TextInputType.number,
+                        obscureText: true,
+                        maxLength: 8,
+                      ),
+                      MaterialButton(
+                        child: Text(
+                          "Entrar",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        ),
+                        onPressed: () {
+                          if (_matTextField.text.toString() == "80886787" &&
+                              _senhaTextField.text.toString() == "80886787") {
+                            print("login aceito");
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => DBTestPage()));
+                          }
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
