@@ -77,7 +77,7 @@ class _VerListaState extends State<VerLista> {
       scrollDirection: Axis.vertical,
       child: DataTable(
         headingRowHeight: 0,
-        dataRowHeight: 89,
+        dataRowHeight: 110,
         columns: [
           DataColumn(
             label: Text('Objeto'),
