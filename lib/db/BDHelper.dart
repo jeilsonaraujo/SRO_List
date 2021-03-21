@@ -29,6 +29,10 @@ class DBHelper {
     return db;
   }
 
+  deleteTable() {
+    _db.delete(TABLE);
+  }
+
   _onCreate(Database db, int version) async {
     await db.execute(
         "CREATE TABLE $TABLE ($ID INTEGER PRIMARY KEY, $NAME TEXT, $NAMELOG TEXT, $NAMENUM TEXT)");
@@ -38,12 +42,6 @@ class DBHelper {
     var dbClient = await db;
     employee.id = await dbClient.insert(TABLE, employee.toMap());
     return employee;
-    /*
-    await dbClient.transaction((txn) async {
-      var query = "INSERT INTO $TABLE ($NAME) VALUES ('" + employee.name + "')";
-      return await txn.rawInsert(query);
-    });
-    */
   }
 
   Future<List<Employee>> getEmployees() async {

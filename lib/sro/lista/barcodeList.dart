@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:sro_list/db/employee.dart';
 import 'package:sro_list/db/BDHelper.dart';
 import 'package:barcode_image/barcode_image.dart';
 import 'package:image/image.dart';
 import 'package:barcode_widget/barcode_widget.dart';
+import 'package:sro_list/sro/login.dart';
 
 class BarcodeLista extends StatefulWidget {
   final String title;
@@ -28,6 +30,7 @@ class _BarcodeListaState extends State<BarcodeLista> {
   String nameLog;
   String nameNum;
   int curUserId;
+  final classDbHelper = new DBHelper();
   final focusObjetoNode = FocusNode();
   final focusLogradouroNode = FocusNode();
   final focusNumeroNode = FocusNode();
@@ -172,10 +175,12 @@ class _BarcodeListaState extends State<BarcodeLista> {
                 icon: Icon(Icons.arrow_back, color: Colors.white),
               ),
               Text('Lista de Códigos'),
-              IconButton(
-                onPressed: () => null,
-                icon: Icon(Icons.list_alt, color: Colors.transparent),
+              MaterialButton(
+                onPressed: () => limparLista(),
+                child: Text('Limpar Lista',
+                    style: TextStyle(color: Colors.white, fontSize: 18)),
               ),
+
               // Your widgets here
             ],
           ),
@@ -195,5 +200,12 @@ class _BarcodeListaState extends State<BarcodeLista> {
         ),
       ),
     );
+  }
+
+  limparLista() async {
+    classDbHelper.deleteTable();
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) => Login()));
+    print('ss');
   }
 }
