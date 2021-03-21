@@ -77,7 +77,7 @@ class _VerListaState extends State<VerLista> {
       scrollDirection: Axis.vertical,
       child: DataTable(
         headingRowHeight: 0,
-        dataRowHeight: 110,
+        dataRowHeight: 108,
         columns: [
           DataColumn(
             label: Text('Objeto'),
@@ -86,38 +86,27 @@ class _VerListaState extends State<VerLista> {
         rows: employees
             .map(
               (employee) => DataRow(cells: [
-                DataCell(Column(children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 0.0,
-                          vertical: 0.0,
+                DataCell(Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: Column(
                           children: [
-                            Container(
-                              height: 5,
-                            ),
                             Row(
                               children: [
                                 Container(
                                   width: 15,
                                 ),
-                                Icon(Icons.add_box_outlined),
+                                Icon(CupertinoIcons.cube_box),
                                 Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 15, vertical: 10),
-                                    child: Text(employee.name,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        )),
+                                    child: Text(employee.name),
                                   ),
                                 ),
                               ],
@@ -129,7 +118,7 @@ class _VerListaState extends State<VerLista> {
                                 ),
                                 Icon(
                                   Icons.map,
-                                  color: Color(0xff808080),
+                                  color: Color(0xff000000),
                                 ),
                                 Expanded(
                                   child: Padding(
@@ -139,8 +128,6 @@ class _VerListaState extends State<VerLista> {
                                         employee.nameLog +
                                             ", " +
                                             employee.nameNum,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
                                       )),
                                 ),
                               ],
@@ -151,9 +138,7 @@ class _VerListaState extends State<VerLista> {
                           ],
                         ),
                       ),
-                    ),
-                  ),
-                ])),
+                    ])),
                 /*
                 DataCell(
                   Text(employee.nameLog),

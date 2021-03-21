@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:sro_list/sro/login.dart';
 import 'package:sro_list/db/employee.dart';
 import 'package:sro_list/db/BDHelper.dart';
 import 'package:barcode_image/barcode_image.dart';
-import 'package:image/image.dart';
 import 'package:barcode_widget/barcode_widget.dart';
-import 'package:sro_list/sro/login.dart';
 
 class BarcodeLista extends StatefulWidget {
   final String title;
@@ -21,7 +19,6 @@ class BarcodeLista extends StatefulWidget {
 }
 
 class _BarcodeListaState extends State<BarcodeLista> {
-  //
   Future<List<Employee>> employees;
   TextEditingController controllerObj = TextEditingController();
   TextEditingController controllerLog = TextEditingController();
@@ -126,14 +123,6 @@ class _BarcodeListaState extends State<BarcodeLista> {
                     ),
                   ),
                 ])),
-                /*
-                DataCell(
-                  Text(employee.nameLog),
-                ),
-                DataCell(
-                  Text(employee.nameNum),
-                ),
-                */
               ]),
             )
             .toList(),
@@ -174,10 +163,10 @@ class _BarcodeListaState extends State<BarcodeLista> {
                 onPressed: () => {Navigator.of(context).pop()},
                 icon: Icon(Icons.arrow_back, color: Colors.white),
               ),
-              Text('Lista de Códigos'),
+              Text('Códigos'),
               MaterialButton(
                 onPressed: () => limparLista(),
-                child: Text('Limpar Lista',
+                child: Text('Nova Lista',
                     style: TextStyle(color: Colors.white, fontSize: 18)),
               ),
 

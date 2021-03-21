@@ -1,5 +1,6 @@
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sro_list/db/employee.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:async';
@@ -107,8 +108,13 @@ class _DBTestPageState extends State<DBTestPage> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 15.0),
                                 child: TextFormField(
+                                  autocorrect: false,
                                   maxLength: 13,
                                   controller: controllerObj,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp("[A-Z0-9]"))
+                                  ],
                                   textCapitalization:
                                       TextCapitalization.characters,
                                   autofocus: true,
@@ -153,8 +159,14 @@ class _DBTestPageState extends State<DBTestPage> {
                                   horizontal: 15,
                                 ),
                                 child: TextFormField(
+                                  autocorrect: false,
+                                  maxLength: 25,
                                   controller: controllerLog,
                                   focusNode: focusLogradouroNode,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp("[A-Z0-9 .]"))
+                                  ],
                                   textCapitalization:
                                       TextCapitalization.characters,
                                   validator: (val) => val.length == 0
