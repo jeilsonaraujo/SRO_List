@@ -106,8 +106,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
                             fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                       onPressed: () {
-                        if (_matTextField.text.toString() == "80886787" &&
-                            _senhaTextField.text.toString() == "80886787") {
+                        if (_matTextField.text.toString() == "80" &&
+                            _senhaTextField.text.toString() == "80") {
                           print("login aceito");
                           Navigator.of(context).pushReplacement(
                               CupertinoPageRoute(
